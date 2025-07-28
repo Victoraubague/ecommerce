@@ -1,0 +1,73 @@
+
+:root {
+  --color-neutral-50: #fafaf9;
+  --color-neutral-100: #f5f5f4;
+  --color-neutral-200: #e7e5e4;
+  --color-neutral-300: #d6d3d1;
+  --color-neutral-400: #a8a29e;
+  --color-neutral-500: #78716c;
+  --color-neutral-600: #57534e;
+  --color-neutral-700: #44403c;
+  --color-neutral-800: #292524;
+  --color-neutral-900: #1c1917;
+  --color-neutral-950: #0c0a09;
+
+  --color-gold: #d4af37;
+  --color-gold-dark: #b8941f;
+  --color-cream: #f7f3e9;
+  --color-warm: #92857a;
+
+
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+  --color-info: #2563eb;
+
+  --bg-primary: var(--color-neutral-100);
+  --bg-secondary: var(--color-neutral-200);
+  --bg-elevated: #ffffff;
+  --bg-inverse: var(--color-neutral-950);
+  
+  --text-primary: var(--color-neutral-950);
+  --text-secondary: var(--color-neutral-700);
+  --text-muted: var(--color-neutral-500);
+  --text-inverse: var(--color-neutral-50);
+  
+  --border-default: var(--color-neutral-400);
+  --border-strong: var(--color-neutral-600);
+  --border-inverse: var(--color-neutral-800);
+
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --bg-primary: var(--color-neutral-950);
+  --bg-secondary: var(--color-neutral-900);
+  --bg-elevated: var(--color-neutral-900);
+  --bg-inverse: var(--color-neutral-50);
+  
+  --text-primary: var(--color-neutral-50);
+  --text-secondary: var(--color-neutral-400);
+  --text-muted: var(--color-neutral-600);
+  --text-inverse: var(--color-neutral-900);
+  
+  --border-default: var(--color-neutral-800);
+  --border-strong: var(--color-neutral-700);
+  --border-inverse: var(--color-neutral-200);
+}
+
+.bg-luxury-primary { background-color: var(--bg-primary); }
+.bg-luxury-secondary { background-color: var(--bg-secondary); }
+.bg-luxury-elevated { background-color: var(--bg-elevated); }
+.bg-luxury-inverse { background-color: var(--bg-inverse); }
+
+.text-luxury-primary { color: var(--text-primary); }
+.text-luxury-secondary { color: var(--text-secondary); }
+.text-luxury-muted { color: var(--text-muted); }
+.text-luxury-inverse { color: var(--text-inverse); }
+.text-luxury-gold { color: var(--color-gold); }
+
+.border-luxury-default { border-color: var(--border-default); }
+.border-luxury-strong { border-color: var(--border-strong); }
+.border-luxury-inverse { border-color: var(--border-inverse); }

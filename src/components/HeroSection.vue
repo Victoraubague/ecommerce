@@ -67,7 +67,7 @@
 
 <style scoped>
 .hero-section {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   background-color: var(--bg-primary);

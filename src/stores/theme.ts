@@ -22,7 +22,6 @@ export const useThemeStore = defineStore('theme', () => {
     }
   }
 
-  // Initialize theme on store creation
   const initTheme = () => {
     const stored = localStorage.getItem('theme')
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -31,7 +30,6 @@ export const useThemeStore = defineStore('theme', () => {
     updateDocumentClass()
   }
 
-  // Save theme preference
   const saveThemePreference = () => {
     localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
   }

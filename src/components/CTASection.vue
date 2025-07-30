@@ -211,7 +211,6 @@ const subscriptionSuccess = ref(false)
   color: var(--text-inverse);
 }
 
-/* Newsletter */
 .newsletter-container {
   margin-top: var(--space-16);
 }
@@ -283,7 +282,6 @@ const subscriptionSuccess = ref(false)
   color: var(--color-error);
 }
 
-/* Partners */
 .newsletter-partners {
   margin-top: var(--space-12);
   padding-top: var(--space-8);

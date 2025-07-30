@@ -1,53 +1,24 @@
 <template>
   <div class="collections-page">
-    <!-- Hero Section -->
-    <section class="collections-hero">
-      <div class="hero-background"></div>
-      <div class="container">
-        <div class="collections-hero-content">
-          <h1 class="collections-hero-title">
-            COLLECTIONS
-          </h1>
-          <div class="hero-divider"></div>
-          <p class="collections-hero-description">
-            EXPLORATION DU STYLE CONTEMPORAIN
-          </p>
-        </div>
-      </div>
-    </section>
+    <PageHero 
+      title="COLLECTIONS" 
+      subtitle="EXPLORATION DU STYLE CONTEMPORAIN"
+      dark 
+    />
 
-    <!-- Collections Grid -->
     <section class="collections-grid-section">
       <div class="container">
         <div class="collections-grid">
-          <div 
+          <CollectionCard 
             v-for="collection in collections" 
             :key="collection.id"
-            class="collection-card"
-            @click="viewCollection(collection.id)"
-          >
-            <div class="collection-image-container">
-              <img 
-                :src="collection.image"
-                :alt="collection.name"
-                class="collection-image"
-              >
-              <div class="collection-overlay">
-                <div class="collection-info">
-                  <h3 class="collection-name">{{ collection.name.toUpperCase() }}</h3>
-                  <div class="collection-details">
-                    <span class="collection-count">{{ collection.itemCount }} PIÈCES</span>
-                    <span class="collection-price">{{ collection.startingPrice }}€</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            :collection="collection"
+            @click="viewCollection"
+          />
         </div>
       </div>
     </section>
 
-    <!-- Statement Section -->
     <section class="statement-section">
       <div class="container">
         <div class="statement-content">
@@ -60,7 +31,6 @@
       </div>
     </section>
 
-    <!-- Large Featured Collection -->
     <section class="large-featured-section">
       <div class="large-featured-image">
         <img 
@@ -91,9 +61,9 @@
                 <span class="spec-value">FRANCE</span>
               </div>
             </div>
-            <button class="btn-minimal featured-cta">
+            <BaseButton variant="minimal">
               DÉCOUVRIR LA COLLECTION
-            </button>
+            </BaseButton>
           </div>
         </div>
       </div>
@@ -102,82 +72,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { PageHero, CollectionCard, BaseButton } from '@/components/ui'
+import { useCollections } from '@/composables/useCollections'
 
-interface Collection {
-  id: number
-  name: string
-  description: string
-  image: string
-  itemCount: number
-  startingPrice: number
-}
-
-const collections = ref<Collection[]>([
-  {
-    id: 1,
-    name: "Heritage",
-    description: "Pièces intemporelles inspirées de l'artisanat traditionnel français",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80",
-    itemCount: 25,
-    startingPrice: 180
-  },
-  {
-    id: 2,
-    name: "Moderne",
-    description: "Lignes épurées et coupes contemporaines pour un style urbain",
-    image: "https://images.unsplash.com/photo-1578662996442-7cfa79e83d57?w=600&q=80",
-    itemCount: 32,
-    startingPrice: 120
-  },
-  {
-    id: 3,
-    name: "Essentiels",
-    description: "Les basiques revisités avec une attention particulière aux détails",
-    image: "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=80",
-    itemCount: 18,
-    startingPrice: 95
-  },
-  {
-    id: 4,
-    name: "Soirée",
-    description: "Élégance raffinée pour vos occasions spéciales",
-    image: "https://images.unsplash.com/photo-1583627149055-72e92d8c5d4c?w=600&q=80",
-    itemCount: 15,
-    startingPrice: 350
-  },
-  {
-    id: 5,
-    name: "Cuir",
-    description: "Maroquinerie d'exception en cuir italien sélectionné",
-    image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&q=80",
-    itemCount: 12,
-    startingPrice: 450
-  },
-  {
-    id: 6,
-    name: "Accessoires",
-    description: "Finitions parfaites pour compléter votre style",
-    image: "https://images.unsplash.com/photo-1506629905327-b58f4ae08b9e?w=600&q=80",
-    itemCount: 28,
-    startingPrice: 65
-  }
-])
-
-const email = ref('')
-
-const viewCollection = (collectionId: number) => {
-  console.log(`Viewing collection ${collectionId}`)
-  // Navigation logic would go here
-}
-
-const subscribeNewsletter = () => {
-  if (email.value) {
-    console.log(`Subscribing email: ${email.value}`)
-    // Newsletter subscription logic would go here
-    email.value = ''
-  }
-}
+const { collections, viewCollection } = useCollections()
 </script>
 
 <style scoped>
@@ -186,60 +84,6 @@ const subscribeNewsletter = () => {
   background-color: #ffffff;
 }
 
-/* Hero Section - Inspired by luxury brands */
-.collections-hero {
-  position: relative;
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #000000;
-  overflow: hidden;
-}
-
-.hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, #000000 0%, #1a1a1a 100%);
-  opacity: 0.9;
-}
-
-.collections-hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  color: #ffffff;
-}
-
-.collections-hero-title {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: clamp(3rem, 8vw, 8rem);
-  font-weight: 300;
-  letter-spacing: 0.2em;
-  margin: 0;
-  line-height: 0.9;
-}
-
-.hero-divider {
-  width: 60px;
-  height: 1px;
-  background-color: #ffffff;
-  margin: 2rem auto;
-}
-
-.collections-hero-description {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  letter-spacing: 0.15em;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-/* Collections Grid - Minimal luxury style */
 .collections-grid-section {
   background-color: #ffffff;
   padding: 6rem 0;
@@ -263,75 +107,6 @@ const subscribeNewsletter = () => {
   }
 }
 
-.collection-card {
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border: 1px solid #f0f0f0;
-}
-
-.collection-card:hover {
-  border-color: #000000;
-}
-
-.collection-image-container {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 3/4;
-  background-color: #f8f8f8;
-}
-
-.collection-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.collection-card:hover .collection-image {
-  transform: scale(1.02);
-}
-
-.collection-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 1.5rem;
-  transform: translateY(100%);
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.collection-card:hover .collection-overlay {
-  transform: translateY(0);
-}
-
-.collection-info {
-  text-align: center;
-}
-
-.collection-name {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 1.1rem;
-  font-weight: 300;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.75rem;
-  color: #000000;
-}
-
-.collection-details {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  color: #666666;
-  text-transform: uppercase;
-}
-
-/* Statement Section */
 .statement-section {
   background-color: #f8f8f8;
   padding: 4rem 0;
@@ -361,7 +136,6 @@ const subscribeNewsletter = () => {
   margin: 0;
 }
 
-/* Large Featured Section */
 .large-featured-section {
   position: relative;
   min-height: 100vh;
@@ -414,6 +188,7 @@ const subscribeNewsletter = () => {
   letter-spacing: 0.2em;
   margin-bottom: 2rem;
   line-height: 1;
+  color: #ffffff;
 }
 
 .featured-collection-desc {
@@ -460,31 +235,7 @@ const subscribeNewsletter = () => {
   letter-spacing: 0.05em;
 }
 
-.btn-minimal {
-  background: transparent;
-  border: 1px solid #ffffff;
-  color: #ffffff;
-  padding: 1rem 2rem;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-minimal:hover {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
-  .collections-hero {
-    min-height: 60vh;
-  }
-  
   .collections-grid-section {
     padding: 3rem 0;
   }

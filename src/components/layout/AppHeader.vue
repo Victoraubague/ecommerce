@@ -47,7 +47,7 @@
             <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
             </svg>
-            <span v-if="wishlistCount > 0" class="header-badge">{{ wishlistCount }}</span>
+            <span v-if="wishlistStore.itemsCount > 0" class="header-badge">{{ wishlistStore.itemsCount }}</span>
           </button>
 
           <button 
@@ -60,7 +60,7 @@
               <path d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z"></path>
               <path d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"></path>
             </svg>
-            <span v-if="cartCount > 0" class="header-badge">{{ cartCount }}</span>
+            <span v-if="cartStore.itemsCount > 0" class="header-badge">{{ cartStore.itemsCount }}</span>
           </button>
 
           <button 
@@ -128,6 +128,8 @@
 
 <script setup lang="ts">
 import { ref, nextTick } from 'vue'
+import { useCartStore } from '@/stores/cart'
+import { useWishlistStore } from '@/stores/wishlist'
 
 
 const isSearchOpen = ref(false)
@@ -135,8 +137,9 @@ const isMobileMenuOpen = ref(false)
 const searchQuery = ref('')
 const searchInput = ref<HTMLInputElement | null>(null)
 
-const wishlistCount = ref(2)
-const cartCount = ref(1)
+// Stores
+const cartStore = useCartStore()
+const wishlistStore = useWishlistStore()
 
 const toggleSearch = async () => {
   isSearchOpen.value = !isSearchOpen.value
@@ -147,11 +150,11 @@ const toggleSearch = async () => {
 }
 
 const toggleWishlist = () => {
-  console.log('Toggle wishlist')
+  wishlistStore.toggleWishlist()
 }
 
 const toggleCart = () => {
-  console.log('Toggle cart')
+  cartStore.toggleCart()
 }
 
 const toggleMobileMenu = () => {

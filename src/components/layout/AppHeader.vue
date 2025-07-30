@@ -13,7 +13,10 @@
         <nav class="header-nav" aria-label="Navigation principale">
           <ul class="nav-list">
             <li class="nav-item">
-              <router-link to="/products" class="nav-link">COLLECTIONS</router-link>
+              <router-link to="/collections" class="nav-link">COLLECTIONS</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/shopping" class="nav-link">SHOPPING</router-link>
             </li>
             <li class="nav-item">
               <router-link to="/about" class="nav-link">MAISON</router-link>
@@ -98,8 +101,13 @@
       <nav class="mobile-nav" aria-label="Navigation mobile">
         <ul class="mobile-nav-list">
           <li class="mobile-nav-item">
-            <router-link to="/products" class="mobile-nav-link" @click="closeMobileMenu">
+            <router-link to="/collections" class="mobile-nav-link" @click="closeMobileMenu">
               COLLECTIONS
+            </router-link>
+          </li>
+          <li class="mobile-nav-item">
+            <router-link to="/shopping" class="mobile-nav-link" @click="closeMobileMenu">
+              SHOPPING
             </router-link>
           </li>
           <li class="mobile-nav-item">

@@ -23,6 +23,10 @@ export const useCartStore = defineStore('cart', () => {
     return items.value.reduce((total, item) => total + (item.price * item.quantity), 0)
   })
 
+  const subtotal = computed(() => {
+    return items.value.reduce((total, item) => total + (item.price * item.quantity), 0)
+  })
+
   const isEmpty = computed(() => items.value.length === 0)
 
   const addItem = (product: Omit<CartItem, 'quantity'>, color?: string) => {
@@ -110,8 +114,9 @@ export const useCartStore = defineStore('cart', () => {
     items,
     isOpen,
     
-      itemsCount,
+    itemsCount,
     totalPrice,
+    subtotal,
     isEmpty,
     
     addItem,

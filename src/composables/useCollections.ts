@@ -53,12 +53,7 @@ const collections = ref<Collection[]>([
 ])
 
 export function useCollections() {
-  const viewCollection = (collectionId: number) => {
-    console.log(`Viewing collection ${collectionId}`)
-  }
-
   return {
-    collections,
-    viewCollection
+    collections
   }
 }

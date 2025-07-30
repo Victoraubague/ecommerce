@@ -138,12 +138,12 @@ const goToShopping = () => {
 
 const viewCart = () => {
   cartStore.closeCart()
-  console.log('View cart page')
+  router.push('/cart')
 }
 
 const checkout = () => {
   cartStore.closeCart()
-  console.log('Go to checkout')
+  router.push('/checkout')
 }
 </script>
 

@@ -72,10 +72,19 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { PageHero, CollectionCard, BaseButton } from '@/components/ui'
 import { useCollections } from '@/composables/useCollections'
 
-const { collections, viewCollection } = useCollections()
+const router = useRouter()
+const { collections } = useCollections()
+
+const viewCollection = (collectionId: number) => {
+  const collection = collections.value.find(c => c.id === collectionId)
+  if (collection) {
+    router.push(`/shopping?collection=${encodeURIComponent(collection.name)}`)
+  }
+}
 </script>
 
 <style scoped>

@@ -18,7 +18,7 @@
           </p>
           
           <!-- CTA -->
-          <button class="btn-primary hero-cta">
+          <button @click="goToShopping" class="btn-primary hero-cta">
             DÉCOUVRIR
           </button>
           
@@ -63,6 +63,13 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const goToShopping = () => {
+  router.push('/shopping')
+}
 </script>
 
 <style scoped>

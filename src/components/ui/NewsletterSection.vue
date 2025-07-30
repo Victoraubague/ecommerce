@@ -77,6 +77,7 @@ const handleSubmit = async () => {
   font-weight: 300;
   letter-spacing: 0.15em;
   margin-bottom: 1rem;
+  color: #ffffff;
 }
 
 .newsletter-desc {

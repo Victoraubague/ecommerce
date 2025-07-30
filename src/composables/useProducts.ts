@@ -117,12 +117,34 @@ const categories = ref<Category[]>([
 export function useProducts() {
   const selectedCategory = ref(0)
   const sortBy = ref('newest')
+  const collectionFilter = ref<string | null>(null)
 
   const filteredProducts = computed(() => {
-    let filtered = selectedCategory.value === 0 
-      ? products.value 
-      : products.value.filter(product => product.categoryId === selectedCategory.value)
+    let filtered = products.value
     
+    // Filtre par collection (basé sur le nom de la collection)
+    if (collectionFilter.value) {
+      filtered = filtered.filter(product => {
+        // Mapping collection -> catégorie pour la démo
+        const collectionCategoryMap: Record<string, number[]> = {
+          'Heritage': [1, 4], // Vêtements + Maroquinerie
+          'Moderne': [1, 3], // Vêtements + Chaussures
+          'Essentiels': [1, 2], // Vêtements + Accessoires
+          'Soirée': [1, 2], // Vêtements + Accessoires
+          'Cuir': [4], // Maroquinerie
+          'Accessoires': [2] // Accessoires
+        }
+        const allowedCategories = collectionCategoryMap[collectionFilter.value!] || []
+        return allowedCategories.includes(product.categoryId || 0)
+      })
+    }
+    
+    // Filtre par catégorie
+    if (selectedCategory.value !== 0) {
+      filtered = filtered.filter(product => product.categoryId === selectedCategory.value)
+    }
+    
+    // Tri
     switch (sortBy.value) {
       case 'price-asc':
         filtered.sort((a, b) => a.price - b.price)
@@ -141,6 +163,16 @@ export function useProducts() {
     return filtered
   })
 
+  const setCollectionFilter = (collection: string | null) => {
+    collectionFilter.value = collection
+    selectedCategory.value = 0 // Reset category filter
+  }
+
+  const clearFilters = () => {
+    collectionFilter.value = null
+    selectedCategory.value = 0
+  }
+
   const viewProduct = (product: Product) => {
     console.log(`Viewing product ${product.id}`)
   }
@@ -154,6 +186,9 @@ export function useProducts() {
     categories,
     selectedCategory,
     sortBy,
+    collectionFilter,
+    setCollectionFilter,
+    clearFilters,
     viewProduct,
     quickView
   }

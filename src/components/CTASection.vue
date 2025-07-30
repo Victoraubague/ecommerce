@@ -42,7 +42,7 @@
             </div>
           </div>
 
-          <button class="btn-secondary cta-button">PRENDRE RENDEZ-VOUS</button>
+          <button @click="goToShopping" class="btn-secondary cta-button">DÉCOUVRIR NOS CRÉATIONS</button>
         </div>
 
         <div class="newsletter-container">
@@ -91,11 +91,36 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const email = ref('')
 const isSubscribing = ref(false)
 const subscriptionMessage = ref('')
 const subscriptionSuccess = ref(false)
+
+const goToShopping = () => {
+  router.push('/shopping')
+}
+
+const subscribeNewsletter = async () => {
+  isSubscribing.value = true
+  subscriptionMessage.value = ''
+  
+  try {
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    subscriptionSuccess.value = true
+    subscriptionMessage.value = 'Merci pour votre inscription !'
+    email.value = ''
+  } catch (error) {
+    subscriptionSuccess.value = false
+    subscriptionMessage.value = 'Une erreur est survenue. Veuillez réessayer.'
+  } finally {
+    isSubscribing.value = false
+  }
+}
 
 </script>
 

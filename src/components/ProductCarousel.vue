@@ -48,7 +48,7 @@
                   </div>
 
                   <div class="product-cta">
-                    <button class="btn-secondary product-btn">
+                    <button @click="viewProduct(product)" class="btn-secondary product-btn">
                       VOIR DÉTAILS
                     </button>
                   </div>
@@ -111,6 +111,9 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 interface Product {
   id: number
@@ -258,6 +261,10 @@ const updateVisibleProducts = () => {
 
 const autoPlay = ref(true)
 const autoPlayInterval = ref<number | null>(null)
+
+const viewProduct = (product: Product) => {
+  router.push(`/product/${product.id}`)
+}
 
 const startAutoPlay = () => {
   if (autoPlay.value) {

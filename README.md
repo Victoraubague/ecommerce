@@ -1,7 +1,7 @@
   Template E-commerce Vue.js 3 - Application Full-Stack Moderne
 
   Plateforme e-commerce complète développée avec Vue.js 3, TypeScript et Tailwind CSS, intégrant une architecture moderne avec Pinia pour la gestion d'état. Le projet comprend un système de panier avancé, gestion des
-  favoris, pages produits détaillées, processus de commande complet et interface responsive. Implémentation de composables réutilisables, API REST avec Axios, et design system cohérent avec des composants UI modulaires.
+  favoris, pages produits détaillées, processus de commande complet et interface responsive. Implémentation de composables réutilisables et design system cohérent avec des composants UI modulaires.
   Architecture scalable avec routing dynamique, gestion des collections, formulaires de contact et newsletter intégrés.
 
   Stack technique : Vue 3 + TypeScript + Pinia + Vue Router + Tailwind CSS + Vite
